@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+import { FiBook, FiUsers, FiAward, FiArrowRight } from "react-icons/fi";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const courses = [
   {
@@ -31,18 +34,18 @@ const courses = [
 ];
 
 const AcademySection = () => {
+  const { t } = useLanguage();
   return (
     <section className="py-20 bg-secondary text-white">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
           <div className="max-w-xl">
-            <h2 className="heading-lg mb-4">
-              Arbana Beauty <span className="text-primary">Academy</span>
-            </h2>
-            <p className="text-gray-300">
-              Learn from an industry expert and master the art of makeup through 
-              comprehensive courses designed for all skill levels. Transform your
-              passion into expertise with hands-on training and personalized guidance.
+            <h2 className="heading-lg mb-6">{t('academy.title')}</h2>
+            <p className="text-lg text-gray-600 mb-6">
+              {t('academy.subtitle')}
+            </p>
+            <p className="text-gray-600 mb-8">
+              {t('academy.description')}
             </p>
           </div>
           <Link
@@ -64,8 +67,14 @@ const AcademySection = () => {
               className="bg-white dark:bg-gray-800 rounded-sm overflow-hidden text-secondary dark:text-white group"
             >
               <div className="relative h-60 overflow-hidden">
-                <div className="bg-gray-300 w-full h-full flex items-center justify-center">
-                  <span className="text-gray-500">{course.title} Image</span>
+                <div className="relative overflow-hidden rounded-lg h-96">
+                  <Image
+                    src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                    alt="Makeup academy training session"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
                 <div className="absolute top-4 right-4 bg-primary text-white text-sm font-medium py-1 px-3 rounded-sm">
                   {course.level}

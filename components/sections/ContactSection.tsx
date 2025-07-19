@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FiMapPin, FiMail, FiClock, FiSend } from "react-icons/fi";
+import Image from "next/image";
 
 const ContactSection = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -56,12 +58,10 @@ const ContactSection = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-lg mb-6">Get in Touch</h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-8">
-              Have questions about services, academy courses, or collaboration opportunities? 
-              Reach out to us and we&apos;ll get back to you promptly.
+            <h2 className="heading-lg mb-4">{t('contact.title')}</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              {t('contact.subtitle')}
             </p>
-
             <div className="space-y-6">
               <div className="flex items-start">
                 <div className="flex-shrink-0 bg-primary bg-opacity-10 p-3 rounded-full mr-4">
@@ -107,6 +107,7 @@ const ContactSection = () => {
                 </div>
               </div>
             </div>
+            <Image src="/images/contact.jpg" alt="Contact Image" width={500} height={300} />
           </motion.div>
 
           {/* Contact Form */}
@@ -208,12 +209,15 @@ const ContactSection = () => {
                     "Sending..."
                   ) : (
                     <>
-                      Send Message <FiSend className="ml-2" />
+                      <Link href="/contact" className="btn-primary">
+                        {t('contact.cta')}
+                      </Link> <FiSend className="ml-2" />
                     </>
                   )}
                 </button>
               </form>
             </div>
+            <Image src="/images/studio.jpg" alt="Studio Image" width={500} height={300} />
           </motion.div>
         </div>
       </div>
