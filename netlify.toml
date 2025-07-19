@@ -16,10 +16,3 @@
   from = "/*"
   to = "/index.html"
   status = 200
-  status = 200
-
-# This ensures that client-side routing works
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/nextjs-server"
-  status = 200
