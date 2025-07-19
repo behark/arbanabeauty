@@ -24,16 +24,14 @@ const ADMIN_CREDENTIALS = {
 };
 
 export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<AdminUser | null>(null);
 
   useEffect(() => {
-    // Check if user is already logged in (session storage)
-    const savedAuth = sessionStorage.getItem('admin_auth');
-    if (savedAuth) {
-      const authData = JSON.parse(savedAuth);
-      setIsAuthenticated(true);
-      setUser(authData.user);
+    // Check if user is already logged in from localStorage on client side
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('admin_authenticated');
+      setIsAuthenticated(saved === 'true');
     }
   }, []);
 

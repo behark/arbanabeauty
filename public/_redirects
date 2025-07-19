@@ -1,0 +1,6 @@
+# Admin routes - ensure they work properly
+/admin /admin/login 302
+/admin/* /admin/:splat 200
+
+# Fallback for client-side routing
+/* /index.html 200
