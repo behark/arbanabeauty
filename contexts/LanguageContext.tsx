@@ -18,6 +18,7 @@ const translations = {
     'nav.makeup': 'Makeup',
     'nav.academy': 'Academy',
     'nav.products': 'Products',
+    'nav.booking': 'Booking',
     'nav.contact': 'Contact',
     'nav.book': 'Book Now',
     
@@ -56,6 +57,27 @@ const translations = {
     'products.subtitle': 'Discover our premium collection of vegan, cruelty-free, and paraben-free beauty essentials crafted with quality and performance in mind.',
     'products.cta': 'Shop Now',
     
+    // Shop Section
+    'shop.title': 'Beauty Shop',
+    'shop.subtitle': 'Discover our premium collection of beauty products',
+    'shop.search': 'Search products...',
+    'shop.categories': 'Categories',
+    'shop.sortBy': 'Sort by',
+    'shop.showing': 'Showing',
+    'shop.of': 'of',
+    'shop.products': 'products',
+    'shop.addToCart': 'Add to Cart',
+    'shop.viewDetails': 'View Details',
+    
+    // Checkout Section
+    'checkout.title': 'Checkout',
+    'checkout.emptyCart': 'Your cart is empty',
+    'checkout.emptyCartMessage': 'Add some products to your cart to continue shopping',
+    'checkout.continueShopping': 'Continue Shopping',
+    'checkout.orderSummary': 'Order Summary',
+    'checkout.total': 'Total',
+    'checkout.placeOrder': 'Place Order',
+    
     // Testimonials Section
     'testimonials.title': 'Client Testimonials',
     'testimonials.subtitle': 'What our clients say about their experience',
@@ -84,6 +106,7 @@ const translations = {
     'nav.makeup': 'Makeup',
     'nav.academy': 'Akademia',
     'nav.products': 'Produktet',
+    'nav.booking': 'Rezervimi',
     'nav.contact': 'Kontakti',
     'nav.book': 'Rezervo Tani',
     
@@ -121,6 +144,27 @@ const translations = {
     'products.title': 'Produktet e Bukurisë Arbana',
     'products.subtitle': 'Zbulo koleksionin tonë premium të produkteve vegan, pa krudelteti dhe pa parabene të bukurisë të krijuara me cilësi dhe performancë në mendje.',
     'products.cta': 'Blej Tani',
+    
+    // Shop Section
+    'shop.title': 'Dyqani i Bukurisë',
+    'shop.subtitle': 'Zbulo koleksionin tonë premium të produkteve të bukurisë',
+    'shop.search': 'Kërko produkte...',
+    'shop.categories': 'Kategoritë',
+    'shop.sortBy': 'Rendit sipas',
+    'shop.showing': 'Duke treguar',
+    'shop.of': 'nga',
+    'shop.products': 'produkte',
+    'shop.addToCart': 'Shto në Shportë',
+    'shop.viewDetails': 'Shiko Detajet',
+    
+    // Checkout Section
+    'checkout.title': 'Blerja',
+    'checkout.emptyCart': 'Shporta juaj është bosh',
+    'checkout.emptyCartMessage': 'Shtoni disa produkte në shportën tuaj për të vazhduar blerjen',
+    'checkout.continueShopping': 'Vazhdo Blerjen',
+    'checkout.orderSummary': 'Përmbledhja e Porosisë',
+    'checkout.total': 'Totali',
+    'checkout.placeOrder': 'Vendos Porosinë',
     
     // Testimonials Section
     'testimonials.title': 'Dëshmitë e Klientëve',

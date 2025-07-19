@@ -35,11 +35,11 @@ const Footer = () => {
             <h4 className="text-lg font-bold mb-4">Quick Links</h4>
             <nav className="flex flex-col space-y-2">
               <Link href="/about" className="text-gray-300 hover:text-primary transition-colors">About</Link>
-              <Link href="/services" className="text-gray-300 hover:text-primary transition-colors">Services</Link>
-              <Link href="/portfolio" className="text-gray-300 hover:text-primary transition-colors">Portfolio</Link>
+              <Link href="/makeup" className="text-gray-300 hover:text-primary transition-colors">Services</Link>
+              <Link href="/makeup" className="text-gray-300 hover:text-primary transition-colors">Portfolio</Link>
               <Link href="/academy" className="text-gray-300 hover:text-primary transition-colors">Academy</Link>
               <Link href="/shop" className="text-gray-300 hover:text-primary transition-colors">Shop</Link>
-              <Link href="/blog" className="text-gray-300 hover:text-primary transition-colors">Blog</Link>
+              <Link href="/contact" className="text-gray-300 hover:text-primary transition-colors">Contact</Link>
             </nav>
           </div>
 
@@ -47,11 +47,11 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-4">Services</h4>
             <nav className="flex flex-col space-y-2">
-              <Link href="/services/bridal-makeup" className="text-gray-300 hover:text-primary transition-colors">Bridal Makeup</Link>
-              <Link href="/services/special-events" className="text-gray-300 hover:text-primary transition-colors">Special Events</Link>
-              <Link href="/services/editorial" className="text-gray-300 hover:text-primary transition-colors">Editorial</Link>
-              <Link href="/services/private-lessons" className="text-gray-300 hover:text-primary transition-colors">Private Lessons</Link>
-              <Link href="/academy/courses" className="text-gray-300 hover:text-primary transition-colors">Academy Courses</Link>
+              <Link href="/makeup" className="text-gray-300 hover:text-primary transition-colors">Bridal Makeup</Link>
+              <Link href="/makeup" className="text-gray-300 hover:text-primary transition-colors">Special Events</Link>
+              <Link href="/makeup" className="text-gray-300 hover:text-primary transition-colors">Editorial</Link>
+              <Link href="/makeup" className="text-gray-300 hover:text-primary transition-colors">Private Lessons</Link>
+              <Link href="/academy" className="text-gray-300 hover:text-primary transition-colors">Academy Courses</Link>
               <Link href="/booking" className="text-gray-300 hover:text-primary transition-colors">Book Now</Link>
             </nav>
           </div>
@@ -60,7 +60,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-4">Contact</h4>
             <div className="space-y-3 text-gray-300">
-              <p>Studio Location: Prishtina, Kosovo</p>
+              <p>Kosovo, Mitrovice, RR.Gazmend Baliu NR.53</p>
               <p className="flex items-center">
                 <FiMail className="mr-2" /> 
                 <a href="mailto:contact@arbanakabashi.com" className="hover:text-primary transition-colors">
