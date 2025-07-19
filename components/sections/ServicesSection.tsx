@@ -97,7 +97,7 @@ const ServicesSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
               <div className="p-3 bg-primary bg-opacity-10 rounded-full w-fit mb-4 text-primary">
-                {service.icon}
+                <service.icon size={24} />
               </div>
               <h3 className="text-xl font-bold mb-3">{service.title}</h3>
               <p className="text-gray-600 dark:text-gray-300 mb-5">{service.description}</p>

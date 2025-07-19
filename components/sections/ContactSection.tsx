@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiMapPin, FiMail, FiClock, FiSend } from "react-icons/fi";
-import Image from "next/image";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ContactSection = () => {
   const { t } = useLanguage();
@@ -107,7 +109,7 @@ const ContactSection = () => {
                 </div>
               </div>
             </div>
-            <Image src="/images/contact.jpg" alt="Contact Image" width={500} height={300} />
+
           </motion.div>
 
           {/* Contact Form */}
@@ -209,15 +211,13 @@ const ContactSection = () => {
                     "Sending..."
                   ) : (
                     <>
-                      <Link href="/contact" className="btn-primary">
-                        {t('contact.cta')}
-                      </Link> <FiSend className="ml-2" />
+                      {t('contact.cta')} <FiSend className="ml-2" />
                     </>
                   )}
                 </button>
               </form>
             </div>
-            <Image src="/images/studio.jpg" alt="Studio Image" width={500} height={300} />
+
           </motion.div>
         </div>
       </div>
