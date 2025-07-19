@@ -13,6 +13,7 @@ const ContentEditor = () => {
   const [hasChanges, setHasChanges] = useState(false);
 
   const sections = [
+    // Homepage Sections
     { id: 'hero', name: 'Hero Section', icon: '🏠' },
     { id: 'about', name: 'About Section', icon: '👤' },
     { id: 'services', name: 'Services', icon: '💄' },
@@ -20,22 +21,28 @@ const ContentEditor = () => {
     { id: 'products', name: 'Products', icon: '🛍️' },
     { id: 'testimonials', name: 'Testimonials', icon: '💬' },
     { id: 'contact', name: 'Contact', icon: '📞' },
+    // Individual Pages
+    { id: 'aboutPage', name: 'About Page', icon: '📄' },
+    { id: 'makeupPage', name: 'Makeup Services Page', icon: '💋' },
+    { id: 'academyPage', name: 'Academy Page', icon: '📚' },
+    { id: 'productsPage', name: 'Products Page', icon: '🛒' },
   ];
 
   // Sample content structure - in a real app, this would come from a database
   const [content, setContent] = useState({
+    // Homepage Sections
     hero: {
       en: {
-        title: 'Professional Makeup Artist & Beauty Expert',
-        subtitle: 'Transform your beauty with expert makeup artistry and professional training in Mitrovice',
+        title: 'Professional Makeup Artist & Beauty Entrepreneur',
+        subtitle: 'Creating stunning looks for weddings, editorials, and special events with years of professional experience',
         ctaBook: 'Book Consultation',
         ctaPortfolio: 'View Portfolio',
       },
       sq: {
-        title: 'Artiste Profesionale Makeup & Eksperte Bukurie',
-        subtitle: 'Transformo bukurinë tënde me artizanatin ekspert të makeup-it dhe trajnimin profesional në Mitrovicë',
+        title: 'Artiste Profesionale Makeup & Sipërmarrëse Bukurie',
+        subtitle: 'Krijimi i pamjeve mahnitëse për dasma, editorial dhe ngjarje të veçanta me vite përvojë profesionale',
         ctaBook: 'Rezervo Konsultim',
-        ctaPortfolio: 'Shiko Portfolion',
+        ctaPortfolio: 'Shiko Punët',
       },
     },
     about: {
@@ -46,13 +53,149 @@ const ContentEditor = () => {
         cta: 'Learn More About Me',
       },
       sq: {
-        title: 'Rreth Arbana',
+        title: 'Rreth Arbanës',
         subtitle: 'Artiste profesionale makeup me vite përvojë në makeup për nuse, editorial dhe ngjarje të veçanta',
         description: 'Me një pasion për të theksuar bukurinë natyrore dhe vite përvojë profesionale, specializohem në krijimin e pamjeve mahnitëse të makeup-it për çdo rast.',
         cta: 'Mëso Më Shumë Rreth Meje',
       },
     },
-    // Add more sections as needed
+    services: {
+      en: {
+        title: 'My Services',
+        subtitle: 'Professional makeup services for every occasion',
+        description: 'From bridal makeup to editorial shoots, I offer comprehensive beauty services tailored to your needs.',
+      },
+      sq: {
+        title: 'Shërbimet e Mia',
+        subtitle: 'Shërbime profesionale makeup për çdo rast',
+        description: 'Nga makeup për nuse deri tek seanset editoriale, ofroj shërbime të plota bukurie të përshtatura për nevojat tuaja.',
+      },
+    },
+    academy: {
+      en: {
+        title: 'Beauty Academy',
+        subtitle: 'Learn professional makeup techniques',
+        description: 'Join our comprehensive makeup courses and master the art of professional beauty application.',
+        cta: 'Enroll Now',
+      },
+      sq: {
+        title: 'Akademia e Bukurisë',
+        subtitle: 'Mëso teknika profesionale makeup',
+        description: 'Bashkohu me kurset tona të plota të makeup-it dhe zotëro artin e aplikimit profesional të bukurisë.',
+        cta: 'Regjistrohu Tani',
+      },
+    },
+    products: {
+      en: {
+        title: 'Beauty Products',
+        subtitle: 'Premium makeup and skincare products',
+        description: 'Discover our curated collection of high-quality beauty products from top brands.',
+        cta: 'Shop Now',
+      },
+      sq: {
+        title: 'Produktet e Bukurisë',
+        subtitle: 'Produkte premium makeup dhe kujdesi për lëkurën',
+        description: 'Zbuloni koleksionin tonë të zgjedhur të produkteve cilësore të bukurisë nga markat më të mira.',
+        cta: 'Blej Tani',
+      },
+    },
+    testimonials: {
+      en: {
+        title: 'Client Testimonials',
+        subtitle: 'What my clients say about their experience',
+        description: 'Read reviews from satisfied clients who trusted me with their special moments.',
+      },
+      sq: {
+        title: 'Dëshmitë e Klientëve',
+        subtitle: 'Çfarë thonë klientët e mi për përvojën e tyre',
+        description: 'Lexoni recensionet nga klientët e kënaqur që më besuan momentet e tyre të veçanta.',
+      },
+    },
+    contact: {
+      en: {
+        title: 'Get In Touch',
+        subtitle: 'Ready to book your appointment?',
+        description: 'Contact me today to discuss your makeup needs and schedule your consultation.',
+        cta: 'Contact Me',
+      },
+      sq: {
+        title: 'Kontaktoni',
+        subtitle: 'Gati për të rezervuar takimin tuaj?',
+        description: 'Kontaktoni sot për të diskutuar nevojat tuaja të makeup-it dhe për të planifikuar konsultimin.',
+        cta: 'Kontaktoni',
+      },
+    },
+    // Individual Pages
+    aboutPage: {
+      en: {
+        title: 'About Arbana Kabashi',
+        subtitle: 'Professional Makeup Artist & Beauty Entrepreneur',
+        bio: 'With over 8 years of experience in the beauty industry, I have built a reputation for creating flawless, stunning makeup looks that enhance natural beauty. My journey began with a passion for art and beauty, which led me to pursue professional training in makeup artistry.',
+        experience: 'I have worked with numerous clients for weddings, fashion shoots, special events, and editorial work. My expertise spans from natural everyday looks to dramatic evening makeup, always ensuring each client feels confident and beautiful.',
+        mission: 'My mission is to help every woman feel beautiful and confident in her own skin. I believe makeup is an art form that should enhance, not mask, your natural beauty.',
+      },
+      sq: {
+        title: 'Rreth Arbana Kabashi',
+        subtitle: 'Artiste Profesionale Makeup & Sipërmarrëse Bukurie',
+        bio: 'Me mbi 8 vjet përvojë në industrinë e bukurisë, kam ndërtuar një reputacion për krijimin e pamjeve të përsosura dhe mahnitëse të makeup-it që theksojnë bukurinë natyrore. Udhëtimi im filloi me një pasion për artin dhe bukurinë, që më çoi të ndjek trajnim profesional në artizanatin e makeup-it.',
+        experience: 'Kam punuar me shumë klientë për dasma, seanset e modës, ngjarje të veçanta dhe punë editoriale. Ekspertiza ime shtrihet nga pamjet natyrore të përditshme deri tek makeup-i dramatik i mbrëmjes, duke siguruar gjithmonë që çdo klient të ndihet i sigurt dhe i bukur.',
+        mission: 'Misioni im është të ndihmoj çdo grua të ndihet e bukur dhe e sigurt në lëkurën e saj. Besoj se makeup-i është një formë arti që duhet të theksojë, jo të maskojë, bukurinë tuaj natyrore.',
+      },
+    },
+    makeupPage: {
+      en: {
+        title: 'Makeup Services',
+        subtitle: 'Professional makeup for every occasion',
+        bridal: 'Bridal makeup that makes your special day unforgettable with long-lasting, photo-perfect results.',
+        editorial: 'Editorial and fashion makeup for photoshoots, runway shows, and creative projects.',
+        special: 'Special event makeup for parties, galas, and important occasions.',
+        everyday: 'Everyday makeup lessons and natural looks for daily confidence.',
+      },
+      sq: {
+        title: 'Shërbimet e Makeup-it',
+        subtitle: 'Makeup profesional për çdo rast',
+        bridal: 'Makeup për nuse që e bën ditën tuaj të veçantë të paharrueshme me rezultate të qëndrueshme dhe të përsosura për foto.',
+        editorial: 'Makeup editorial dhe mode për seanset fotografike, shfaqjet e modës dhe projektet kreative.',
+        special: 'Makeup për ngjarje të veçanta për festa, gala dhe raste të rëndësishme.',
+        everyday: 'Mësime makeup-i për çdo ditë dhe pamje natyrore për besim të përditshëm.',
+      },
+    },
+    academyPage: {
+      en: {
+        title: 'Beauty Academy',
+        subtitle: 'Master the art of professional makeup',
+        courses: 'Comprehensive makeup courses covering basic to advanced techniques.',
+        certification: 'Professional certification programs for aspiring makeup artists.',
+        workshops: 'Specialized workshops on specific makeup techniques and trends.',
+        mentorship: 'One-on-one mentorship programs for personalized learning.',
+      },
+      sq: {
+        title: 'Akademia e Bukurisë',
+        subtitle: 'Zotëro artin e makeup-it profesional',
+        courses: 'Kurse të plota makeup-i që mbulojnë teknikat nga bazike deri tek të avancuara.',
+        certification: 'Programe certifikimi profesional për artistët aspirantë të makeup-it.',
+        workshops: 'Punëtori të specializuara për teknika dhe tendenca specifike të makeup-it.',
+        mentorship: 'Programe mentorimi një-për-një për mësim të personalizuar.',
+      },
+    },
+    productsPage: {
+      en: {
+        title: 'Beauty Products',
+        subtitle: 'Premium makeup and skincare collection',
+        makeup: 'Professional-grade makeup products used by industry experts.',
+        skincare: 'Luxury skincare products for healthy, glowing skin.',
+        tools: 'High-quality makeup brushes and application tools.',
+        brands: 'Curated selection from top international beauty brands.',
+      },
+      sq: {
+        title: 'Produktet e Bukurisë',
+        subtitle: 'Koleksion premium makeup dhe kujdesi për lëkurën',
+        makeup: 'Produkte makeup-i me cilësi profesionale të përdorura nga ekspertët e industrisë.',
+        skincare: 'Produkte luksoze për kujdesin e lëkurës për një lëkurë të shëndetshme dhe të shkëlqyer.',
+        tools: 'Furça makeup-i dhe mjete aplikimi me cilësi të lartë.',
+        brands: 'Përzgjedhje e kuruar nga markat më të mira ndërkombëtare të bukurisë.',
+      },
+    },
   });
 
   const handleContentChange = (field: string, value: string) => {
