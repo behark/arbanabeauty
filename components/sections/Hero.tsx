@@ -1,73 +1,64 @@
 "use client";
 
-import { motion } from "framer-motion";
+import React from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { FiArrowRight, FiPlay } from "react-icons/fi";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
+  const { t } = useLanguage();
   return (
-    <section className="relative h-screen flex items-center">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: "url('/images/hero-bg.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-      </div>
+    <section className="relative min-h-screen flex items-center bg-gradient-to-br from-cream via-white to-accent">
+      <div className="container-custom">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-      {/* Content */}
-      <div className="container-custom relative z-10 text-white">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="max-w-3xl"
-        >
-          <h1 className="heading-xl mb-6">
-            Elevate Your <span className="text-primary">Beauty</span> with Artistry and Excellence
-          </h1>
-          <p className="text-lg md:text-xl mb-8 text-gray-200">
-            Professional makeup artist, educator, and beauty entrepreneur bringing innovation and artistry to the beauty industry.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/booking"
-              className="px-8 py-3 bg-primary text-white font-medium rounded-sm hover:bg-primary-dark transition-colors inline-block text-center"
-            >
-              Book a Session
-            </Link>
-            <Link
-              href="/about"
-              className="px-8 py-3 border-2 border-white text-white font-medium rounded-sm hover:bg-white hover:text-secondary transition-colors inline-block text-center"
-            >
-              Discover More
-            </Link>
-          </div>
-        </motion.div>
-      </div>
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="lg:pr-8"
+          >
+            <h1 className="heading-xl mb-6">
+              {t('hero.title')}
+            </h1>
+            <p className="text-xl text-gray-600 mb-8">
+              {t('hero.subtitle')}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/contact" className="btn-primary">
+                {t('hero.cta.book')}
+                <FiArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+              <Link href="/makeup" className="btn-secondary">
+                <FiPlay className="mr-2 w-5 h-5" />
+                {t('hero.cta.portfolio')}
+              </Link>
+            </div>
+          </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-      >
-        <p className="text-white text-sm mb-2">Scroll to explore</p>
-        <motion.div
-          className="w-5 h-10 border-2 border-white rounded-full flex justify-center p-1"
-          initial={{ y: 0 }}
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5 }}
-        >
-          <motion.div className="w-1 h-2 bg-white rounded-full" />
-        </motion.div>
-      </motion.div>
+          {/* Hero Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
+          >
+            <div className="relative overflow-hidden rounded-lg h-96 lg:h-[500px]">
+              <Image
+                src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80"
+                alt="Professional makeup artist at work"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 };

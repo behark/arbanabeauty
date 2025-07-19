@@ -1,37 +1,45 @@
 "use client";
 
+import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import { FiHeart, FiCamera, FiStar, FiUsers } from "react-icons/fi";
+import { useLanguage } from "@/contexts/LanguageContext";
 import Link from "next/link";
-import { FiCalendar, FiBook, FiStar, FiCamera } from "react-icons/fi";
 
 const services = [
   {
-    icon: <FiCalendar size={24} />,
-    title: "Bridal & Special Events",
-    description: "Bespoke makeup services for weddings and special occasions with personalized consultations.",
+    icon: FiHeart,
+    title: 'Bridal & Special Events',
+    description: 'Bespoke makeup services for weddings and special occasions with personalized consultations.',
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     link: "/services/bridal-makeup",
   },
   {
-    icon: <FiStar size={24} />,
-    title: "Celebrity & Editorial",
-    description: "High-impact makeup for photoshoots, red carpet events, and magazine features.",
+    icon: FiCamera,
+    title: 'Celebrity & Editorial',
+    description: 'High-impact makeup for photoshoots, red carpet events, and magazine features.',
+    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
     link: "/services/editorial",
   },
   {
-    icon: <FiBook size={24} />,
-    title: "Private Coaching",
-    description: "One-on-one makeup lessons tailored to your specific needs and skill level.",
+    icon: FiStar,
+    title: 'Private Coaching',
+    description: 'One-on-one makeup lessons tailored to your specific needs and skill level.',
+    image: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
     link: "/services/private-lessons",
   },
   {
-    icon: <FiCamera size={24} />,
-    title: "Makeup & Photography",
-    description: "Complete packages including professional makeup and photography services.",
+    icon: FiUsers,
+    title: 'Makeup & Photography',
+    description: 'Complete packages including professional makeup and photography services.',
+    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1926&q=80",
     link: "/services/photography",
   },
 ];
 
 const ServicesSection = () => {
+  const { t } = useLanguage();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -60,9 +68,9 @@ const ServicesSection = () => {
           <h2 className="heading-lg mb-4">
             Premium <span className="gradient-text">Makeup Services</span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
-            Exceptional makeup artistry for all occasions, delivered with precision, creativity,
-            and personalized attention to detail.
+          <h2 className="heading-lg mb-4">{t('services.title')}</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            {t('services.subtitle')} and personalized attention to detail.
           </p>
         </div>
 
@@ -79,6 +87,15 @@ const ServicesSection = () => {
               className="bg-accent dark:bg-gray-800 p-6 rounded-sm hover:shadow-lg transition-shadow group"
               variants={itemVariants}
             >
+              <div className="relative h-48 rounded-t-lg overflow-hidden">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
               <div className="p-3 bg-primary bg-opacity-10 rounded-full w-fit mb-4 text-primary">
                 {service.icon}
               </div>

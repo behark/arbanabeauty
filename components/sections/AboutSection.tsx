@@ -1,10 +1,14 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { FiArrowRight } from "react-icons/fi";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const AboutSection = () => {
+  const { t } = useLanguage();
   return (
     <section className="py-20 bg-accent">
       <div className="container-custom">
@@ -18,13 +22,11 @@ const AboutSection = () => {
             className="relative"
           >
             <div className="relative aspect-[3/4] w-full max-w-md mx-auto">
-              {/* We'll need to replace this with an actual image of Arbana */}
-              <div className="bg-gray-300 w-full h-full relative">
-                <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-                  Arbana&apos;s Image
-                </div>
-              </div>
-              
+              <Image
+                src="/images/arbana.jpg"
+                alt="Arbana's Image"
+                className="object-cover w-full h-full"
+              />
               {/* Decorative element */}
               <div className="absolute -bottom-6 -right-6 w-2/3 h-2/3 border-4 border-primary z-[-1]"></div>
             </div>
@@ -37,14 +39,12 @@ const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-lg mb-6">
-              About Arbana Kabashi
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
-              With over 15 years of experience in the beauty industry, I&apos;ve established myself as a leading makeup artist and educator, known for creating flawless, elegant looks for clients worldwide.
+            <h2 className="heading-lg mb-6">{t('about.title')}</h2>
+            <p className="text-lg text-gray-600 mb-6">
+              {t('about.subtitle')}
             </p>
-            <p className="text-gray-600 dark:text-gray-300 mb-8">
-              My unique approach combines artistry with education, ensuring that every client doesn&apos;t just look beautiful but learns techniques to enhance their natural beauty. As the founder of Arbana&apos;s Beauty Academy, I&apos;ve trained hundreds of aspiring makeup artists who have gone on to successful careers in fashion, film, and television.
+            <p className="text-gray-600 mb-8">
+              {t('about.description')}
             </p>
             
             <div className="grid grid-cols-2 gap-6 mb-8">
@@ -70,7 +70,7 @@ const AboutSection = () => {
               href="/about"
               className="px-6 py-3 bg-primary text-white font-medium rounded-sm hover:bg-primary-dark transition-colors inline-block"
             >
-              Learn More About Arbana
+              {t('about.cta')} Arbana
             </Link>
           </motion.div>
         </div>
