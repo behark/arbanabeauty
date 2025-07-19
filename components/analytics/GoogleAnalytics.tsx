@@ -12,11 +12,11 @@ export default function GoogleAnalytics() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (pathname && window.gtag) {
+    if (pathname && (window as any).gtag) {
       const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
       
       // Send pageview with path
-      window.gtag("config", GA_MEASUREMENT_ID, {
+      (window as any).gtag('config', GA_MEASUREMENT_ID, {
         page_path: url,
       });
     }

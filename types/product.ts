@@ -17,6 +17,8 @@ export interface ProductVariant {
   price: number;
   compareAtPrice?: number;
   sku: string;
+  color?: string;
+  colorName?: string;
   stockQuantity: number;
   isDefault?: boolean;
 }
@@ -30,6 +32,8 @@ export interface Product {
   price: number;
   compareAtPrice?: number;
   currency: string;
+  sku?: string;
+  features?: string[];
   images: ProductImage[];
   categories: ProductCategory[];
   variants?: ProductVariant[];

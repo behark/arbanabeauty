@@ -3,8 +3,7 @@ import { Montserrat, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
-import FacebookPixel from "@/components/analytics/FacebookPixel";
+import AnalyticsWrapper from "@/components/analytics/AnalyticsWrapper";
 import MicrosoftClarity from "@/components/analytics/MicrosoftClarity";
 import SchemaMarkup from "@/components/seo/SchemaMarkup";
 import CookieConsent from "@/components/ui/CookieConsent";
@@ -81,8 +80,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="icon" href="/favicon.ico" />
-        <GoogleAnalytics />
-        <FacebookPixel />
+        <AnalyticsWrapper />
         <MicrosoftClarity />
       </head>
       <body className={`${montserrat.variable} ${playfair.variable} font-sans antialiased`}>

@@ -149,7 +149,7 @@ export default function OrderDetailsPage() {
               </button>
               <h1 className="text-2xl font-bold">
                 {isLoading ? t('admin.loading') : (
-                  error ? t('admin.error') : t('admin.orders.viewingOrder', { orderNumber: order?.orderNumber })
+                  error ? t('admin.error') : `Viewing Order ${order?.orderNumber || ''}`
                 )}
               </h1>
             </div>

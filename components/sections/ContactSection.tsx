@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiMapPin, FiMail, FiClock, FiSend } from "react-icons/fi";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -73,8 +71,8 @@ const ContactSection = () => {
                 <div>
                   <h3 className="font-bold mb-1">Studio Location</h3>
                   <p className="text-gray-600 dark:text-gray-300">
-                    123 Beauty Avenue<br />
-                    Prishtina, Kosovo
+                    Kosovo, Mitrovice<br />
+                    RR.Gazmend Baliu NR.53
                   </p>
                 </div>
               </div>
@@ -84,8 +82,11 @@ const ContactSection = () => {
                   <FiMail className="text-primary" size={20} />
                 </div>
                 <div>
-                  <h3 className="font-bold mb-1">Email Us</h3>
+                  <h3 className="font-bold mb-1">Contact Us</h3>
                   <p className="text-gray-600 dark:text-gray-300">
+                    <a href="tel:+38349204242" className="hover:text-primary transition-colors">
+                      +383 49 204 242
+                    </a><br />
                     <a href="mailto:contact@arbanakabashi.com" className="hover:text-primary transition-colors">
                       contact@arbanakabashi.com
                     </a><br />

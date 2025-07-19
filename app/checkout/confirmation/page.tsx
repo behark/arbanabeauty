@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import MainLayout from '@/components/layout/MainLayout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
 
-export default function CheckoutConfirmation() {
+function CheckoutConfirmationContent() {
   const { t } = useLanguage();
   const { clearCart } = useCart();
   const searchParams = useSearchParams();
@@ -74,5 +74,13 @@ export default function CheckoutConfirmation() {
         </div>
       </div>
     </MainLayout>
+  );
+}
+
+export default function CheckoutConfirmation() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CheckoutConfirmationContent />
+    </Suspense>
   );
 }

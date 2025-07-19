@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaStar, FaHeart, FaRegHeart, FaShoppingCart, FaArrowLeft } from "react-icons/fa";
 import MainLayout from "@/components/layout/MainLayout";
-import { products } from "@/data/products";
+import { products } from '@/data/products';
 import { useLanguage } from "@/contexts/LanguageContext";
 import ProductCard from "@/components/shop/ProductCard";
 

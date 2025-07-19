@@ -23,14 +23,21 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
     title: product?.title || "",
     slug: product?.slug || "",
     description: product?.description || "",
+    shortDescription: product?.shortDescription || "",
     price: product?.price || 0,
     compareAtPrice: product?.compareAtPrice || 0,
-    currency: product?.currency || "€",
-    inStock: product?.inStock ?? true,
+    currency: product?.currency || "EUR",
     sku: product?.sku || "",
-    categories: product?.categories || [],
+    features: product?.features || [] as string[],
     images: product?.images || [],
-    features: product?.features || []
+    categories: product?.categories || [],
+    variants: product?.variants || [],
+    featured: product?.featured ?? false,
+    inStock: product?.inStock ?? true,
+    rating: product?.rating || 0,
+    reviewCount: product?.reviewCount || 0,
+    createdAt: product?.createdAt || new Date().toISOString(),
+    updatedAt: product?.updatedAt || new Date().toISOString()
   });
 
   const [featuresInput, setFeaturesInput] = useState("");
@@ -102,7 +109,7 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
     
     setFormData(prev => ({
       ...prev,
-      features: [...prev.features, featuresInput.trim()]
+      features: [...(prev.features || []), featuresInput.trim()]
     }));
     setFeaturesInput("");
   };
@@ -111,7 +118,7 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
   const handleRemoveFeature = (index: number) => {
     setFormData(prev => ({
       ...prev,
-      features: prev.features.filter((_, i) => i !== index)
+      features: (prev.features || []).filter((_, i) => i !== index)
     }));
   };
 
@@ -185,7 +192,7 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
       newErrors.price = t('admin.products.validation.pricePositive');
     }
     
-    if (formData.compareAtPrice < 0) {
+    if ((formData.compareAtPrice || 0) < 0) {
       newErrors.compareAtPrice = t('admin.products.validation.comparePriceNonNegative');
     }
     
@@ -481,7 +488,7 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
           </div>
           
           <ul className="mt-4 space-y-2">
-            {formData.features.map((feature, index) => (
+            {(formData.features || []).map((feature, index) => (
               <li key={index} className="flex justify-between items-center py-2 px-3 bg-gray-50 dark:bg-gray-700 rounded-md">
                 <span>{feature}</span>
                 <button
@@ -493,7 +500,7 @@ export default function ProductForm({ product, mode }: ProductFormProps) {
                 </button>
               </li>
             ))}
-            {formData.features.length === 0 && (
+            {(!formData.features || formData.features.length === 0) && (
               <li className="py-2 px-3 text-gray-500 dark:text-gray-400 italic">
                 {t('admin.products.noFeatures')}
               </li>
