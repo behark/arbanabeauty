@@ -1,4 +1,10 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Arbana Beauty - Professional Makeup Artist
+
+This is the official website for Arbana Kabashi, a professional makeup artist based in Mitrovice, Kosovo. The website is built with Next.js and deployed on Netlify.
+
+## Deployment Status
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/687b33b6-5563-1c9b-39dc-ddcf6c1f4b7f/deploy-status)](https://app.netlify.com/sites/arbanabeauty/deploys)
 
 ## Getting Started
 
