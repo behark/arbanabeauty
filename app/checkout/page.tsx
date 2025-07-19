@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowLeft } from "react-icons/fa";
 import MainLayout from "@/components/layout/MainLayout";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCart } from "@/contexts/CartContext";
+import StripeWrapper from "@/components/checkout/StripeWrapper";
+import StripePaymentForm from "@/components/checkout/StripePaymentForm";
 
 type CheckoutStep = "information" | "shipping" | "payment" | "confirmation";
 
@@ -14,6 +16,8 @@ export default function CheckoutPage() {
   const { t } = useLanguage();
   const { items, subtotal, clearCart } = useCart();
   const [currentStep, setCurrentStep] = useState<CheckoutStep>("information");
+  const [clientSecret, setClientSecret] = useState<string>("");
+  const [isProcessing, setIsProcessing] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
@@ -30,6 +34,31 @@ export default function CheckoutPage() {
     expiryDate: "",
     cvv: "",
   });
+  
+  const shippingCost = formData.shippingMethod === "express" ? 15 : 5;
+  const total = subtotal + shippingCost;
+
+  // Move useEffect before any conditional returns
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    if (currentStep === "payment" && formData.paymentMethod === "card") {
+      setIsProcessing(true);
+      fetch("/api/create-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: total, currency: "eur" }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setClientSecret(data.clientSecret);
+          setIsProcessing(false);
+        })
+        .catch((error) => {
+          console.error("Error loading payment intent:", error);
+          setIsProcessing(false);
+        });
+    }
+  }, [currentStep, formData.paymentMethod, total]);
 
   if (items.length === 0) {
     return (
@@ -62,6 +91,14 @@ export default function CheckoutPage() {
     }));
   };
 
+  // useEffect moved above to avoid conditional Hook call
+
+  const handlePaymentSuccess = () => {
+    setIsProcessing(false);
+    setCurrentStep("confirmation");
+    clearCart();
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -70,15 +107,16 @@ export default function CheckoutPage() {
     } else if (currentStep === "shipping") {
       setCurrentStep("payment");
     } else if (currentStep === "payment") {
-      // Process payment here in a real application
-      // For now, just show confirmation
-      setCurrentStep("confirmation");
-      clearCart();
+      if (formData.paymentMethod === "cashOnDelivery" || formData.paymentMethod === "paypal") {
+        // For payment methods other than credit card
+        setCurrentStep("confirmation");
+        clearCart();
+      }
+      // For card payments, the StripePaymentForm will handle submission
     }
   };
 
-  const shippingCost = formData.shippingMethod === "express" ? 15 : 5;
-  const total = subtotal + shippingCost;
+  // Shipping cost and total moved above for use in useEffect
 
   return (
     <MainLayout>
@@ -380,67 +418,11 @@ export default function CheckoutPage() {
                           </div>
                         </div>
 
-                        {formData.paymentMethod === "card" && (
+                        {formData.paymentMethod === "card" && clientSecret && (
                           <div className="space-y-4">
-                            <div>
-                              <label htmlFor="cardNumber" className="block text-sm font-medium mb-1">
-                                {t('checkout.cardNumber')}
-                              </label>
-                              <input
-                                type="text"
-                                id="cardNumber"
-                                name="cardNumber"
-                                value={formData.cardNumber}
-                                onChange={handleInputChange}
-                                placeholder="0000 0000 0000 0000"
-                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-700"
-                              />
-                            </div>
-
-                            <div>
-                              <label htmlFor="cardName" className="block text-sm font-medium mb-1">
-                                {t('checkout.nameOnCard')}
-                              </label>
-                              <input
-                                type="text"
-                                id="cardName"
-                                name="cardName"
-                                value={formData.cardName}
-                                onChange={handleInputChange}
-                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-700"
-                              />
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-4">
-                              <div>
-                                <label htmlFor="expiryDate" className="block text-sm font-medium mb-1">
-                                  {t('checkout.expiryDate')}
-                                </label>
-                                <input
-                                  type="text"
-                                  id="expiryDate"
-                                  name="expiryDate"
-                                  value={formData.expiryDate}
-                                  onChange={handleInputChange}
-                                  placeholder="MM/YY"
-                                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-700"
-                                />
-                              </div>
-                              <div>
-                                <label htmlFor="cvv" className="block text-sm font-medium mb-1">
-                                  {t('checkout.cvv')}
-                                </label>
-                                <input
-                                  type="text"
-                                  id="cvv"
-                                  name="cvv"
-                                  value={formData.cvv}
-                                  onChange={handleInputChange}
-                                  placeholder="123"
-                                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-700"
-                                />
-                              </div>
-                            </div>
+                            <StripeWrapper clientSecret={clientSecret}>
+                              <StripePaymentForm onSuccess={handlePaymentSuccess} />
+                            </StripeWrapper>
                           </div>
                         )}
                       </div>

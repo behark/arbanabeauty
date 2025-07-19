@@ -7,6 +7,8 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  # Note: Add your actual Stripe API keys in the Netlify Dashboard Environment Variables section
+  # Do not put actual API keys in this file as they would be exposed in version control
 
 # Enable Next.js server-side rendering mode
 [functions]
