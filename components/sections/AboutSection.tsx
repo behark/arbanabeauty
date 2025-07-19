@@ -1,7 +1,7 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 
 const AboutSection = () => {
@@ -21,7 +21,7 @@ const AboutSection = () => {
               {/* We'll need to replace this with an actual image of Arbana */}
               <div className="bg-gray-300 w-full h-full relative">
                 <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-                  Arbana's Image
+                  Arbana&apos;s Image
                 </div>
               </div>
               
@@ -38,18 +38,13 @@ const AboutSection = () => {
             viewport={{ once: true }}
           >
             <h2 className="heading-lg mb-6">
-              Meet <span className="gradient-text">Arbana Kabashi</span>
+              About Arbana Kabashi
             </h2>
-            <p className="text-gray-700 mb-4">
-              With over a decade of experience in the beauty industry, Arbana Kabashi has established
-              herself as a leading makeup artist and beauty entrepreneur. Her expertise spans from
-              bridal and special event makeup to editorial work with major fashion publications.
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              With over 15 years of experience in the beauty industry, I&apos;ve established myself as a leading makeup artist and educator, known for creating flawless, elegant looks for clients worldwide.
             </p>
-            <p className="text-gray-700 mb-6">
-              Arbana's signature approach combines technical precision with artistic flair, 
-              creating looks that enhance her clients' natural beauty while pushing creative boundaries.
-              Her commitment to excellence has earned her a loyal clientele that includes celebrities,
-              influencers, and discerning individuals seeking premium makeup services.
+            <p className="text-gray-600 dark:text-gray-300 mb-8">
+              My unique approach combines artistry with education, ensuring that every client doesn&apos;t just look beautiful but learns techniques to enhance their natural beauty. As the founder of Arbana&apos;s Beauty Academy, I&apos;ve trained hundreds of aspiring makeup artists who have gone on to successful careers in fashion, film, and television.
             </p>
             
             <div className="grid grid-cols-2 gap-6 mb-8">

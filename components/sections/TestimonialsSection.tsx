@@ -56,7 +56,7 @@ const TestimonialsSection = () => {
         <div className="text-center mb-12">
           <h2 className="heading-lg mb-4">Client Testimonials</h2>
           <p className="text-gray-600 max-w-xl mx-auto">
-            Read what our clients have to say about their experiences with Arbana's services and products.
+            Read what our clients have to say about their experiences with Arbana&apos;s services and products.
           </p>
         </div>
 
