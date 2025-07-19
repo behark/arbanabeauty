@@ -1,33 +1,21 @@
 [build]
   command = "npm run build"
-  publish = ".next"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  publish = "out"
 
 [build.environment]
   NODE_VERSION = "18"
   # Note: Add your actual Stripe API keys in the Netlify Dashboard Environment Variables section
   # Do not put actual API keys in this file as they would be exposed in version control
 
-# Enable Next.js server-side rendering mode
-[functions]
-  included_files = [".next/static/**"]
+# For static export, we don't need the Next.js Netlify plugin
+# [[plugins]]
+#   package = "@netlify/plugin-nextjs"
 
 # These redirects ensure that client-side routing works correctly
 [[redirects]]
-  from = "/_next/static/*"
-  to = "/_next/static/:splat"
+  from = "/*"
+  to = "/index.html"
   status = 200
-
-[[redirects]]
-  from = "/_next/data/*"
-  to = "/_next/data/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/nextjs-server/api/:splat"
   status = 200
 
 # This ensures that client-side routing works
