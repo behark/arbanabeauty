@@ -1,13 +1,16 @@
-@import "tailwindcss";
+/* Import Tailwind */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 :root {
-  /* Brand Colors */
+  /* Brand Colors - Light Mode */
   --primary: #d4af37; /* Gold for luxury feel */
   --primary-dark: #b8960c;
   --secondary: #1e1e1e; /* Dark gray for elegance */
   --accent: #f8f0e3; /* Cream/ivory for softness */
   
-  /* Background and Text Colors */
+  /* Background and Text Colors - Light Mode */
   --background: #ffffff;
   --background-alt: #f9f9f9;
   --foreground: #171717;
@@ -16,21 +19,56 @@
   /* Spacing */
   --container-padding: 2rem;
   --section-spacing: 6rem;
-}
-
-:root {
+  
+  /* Theme Color Variables */
   --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
   --color-foreground: var(--foreground);
-  --font-sans: "Montserrat", sans-serif;
-  --font-display: "Playfair Display", serif;
+  --color-foreground-muted: var(--foreground-muted);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --background-alt: #121212;
-    --foreground: #ededed;
-    --foreground-muted: #a0a0a0;
+/* Dark mode theme */
+.dark {
+  --primary: #ffb74d; /* Brighter gold for dark mode */
+  --primary-dark: #ffa726;
+  --secondary: #81d4fa; /* Lighter accent for dark mode */
+  --accent: #263238; /* Dark muted blue for softness */
+  
+  /* Background and Text Colors - Dark Mode */
+  --background: #121212;
+  --background-alt: #1e1e1e;
+  --foreground: #e0e0e0;
+  --foreground-muted: #a0a0a0;
+  
+  /* Apply dark theme colors */
+  --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+}
+
+/* Base element styling */
+@layer base {
+  body {
+    @apply bg-white dark:bg-darkBackground text-gray-900 dark:text-darkText transition-colors duration-200;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+  
+  p, span, div, li, a {
+    @apply font-sans;
+  }
+}
   }
 }
 

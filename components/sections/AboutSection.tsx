@@ -6,6 +6,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import { useLanguage } from "@/contexts/LanguageContext";
+import AnimatedElement from "@/components/animations/AnimatedElement";
+import StaggeredGroup from "@/components/animations/StaggeredGroup";
 
 const AboutSection = () => {
   const { t } = useLanguage();
@@ -14,13 +16,7 @@ const AboutSection = () => {
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
+          <AnimatedElement animation="fadeLeft" duration={0.7} className="relative">
             <div className="relative aspect-[3/4] w-full max-w-md mx-auto">
               <Image
                 src="/images/arbana.jpg"
@@ -30,24 +26,25 @@ const AboutSection = () => {
               {/* Decorative element */}
               <div className="absolute -bottom-6 -right-6 w-2/3 h-2/3 border-4 border-primary z-[-1]"></div>
             </div>
-          </motion.div>
+          </AnimatedElement>
 
           {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="heading-lg mb-6">{t('about.title')}</h2>
-            <p className="text-lg text-gray-600 mb-6">
-              {t('about.subtitle')}
-            </p>
-            <p className="text-gray-600 mb-8">
-              {t('about.description')}
-            </p>
+          <AnimatedElement animation="fadeRight" duration={0.7} delay={0.2}>
+            <AnimatedElement animation="fadeUp" delay={0.3}>
+              <h2 className="heading-lg mb-6">{t('about.title')}</h2>
+            </AnimatedElement>
+            <AnimatedElement animation="fadeUp" delay={0.4}>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                {t('about.subtitle')}
+              </p>
+            </AnimatedElement>
+            <AnimatedElement animation="fadeUp" delay={0.5}>
+              <p className="text-gray-600 dark:text-gray-300 mb-8">
+                {t('about.description')}
+              </p>
+            </AnimatedElement>
             
-            <div className="grid grid-cols-2 gap-6 mb-8">
+            <StaggeredGroup animation="fadeUp" staggerDelay={0.1} initialDelay={0.6} className="grid grid-cols-2 gap-6 mb-8">
               <div>
                 <h3 className="font-bold text-xl mb-2">10+</h3>
                 <p className="text-gray-600">Years of Experience</p>
@@ -64,15 +61,14 @@ const AboutSection = () => {
                 <h3 className="font-bold text-xl mb-2">15+</h3>
                 <p className="text-gray-600">Industry Awards</p>
               </div>
-            </div>
-
+            </StaggeredGroup>
             <Link
               href="/about"
               className="px-6 py-3 bg-primary text-white font-medium rounded-sm hover:bg-primary-dark transition-colors inline-block"
             >
               {t('about.cta')} Arbana
             </Link>
-          </motion.div>
+          </AnimatedElement>
         </div>
       </div>
     </section>

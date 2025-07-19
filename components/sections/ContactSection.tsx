@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiMapPin, FiMail, FiClock, FiSend } from "react-icons/fi";
 import { useLanguage } from "@/contexts/LanguageContext";
+import SocialSharing from "@/components/ui/SocialSharing";
 
 const ContactSection = () => {
   const { t } = useLanguage();
@@ -110,6 +111,11 @@ const ContactSection = () => {
               </div>
             </div>
 
+            <div className="mt-8">
+              <h3 className="font-bold mb-3">Follow & Share</h3>
+              <SocialSharing size="md" className="mb-4" />
+              <p className="text-sm text-gray-500 mt-2">Follow us on social media and share our content with your friends</p>
+            </div>
           </motion.div>
 
           {/* Contact Form */}

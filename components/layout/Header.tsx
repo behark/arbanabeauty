@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import ThemeToggle from "@/components/ThemeToggle";
+import CartButton from "@/components/shop/CartButton";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +33,7 @@ const Header = () => {
     { name: t('nav.makeup'), href: "/makeup" },
     { name: t('nav.academy'), href: "/academy" },
     { name: t('nav.products'), href: "/products" },
+    { name: t('nav.booking'), href: "/booking" },
     { name: t('nav.contact'), href: "/contact" },
   ];
 
@@ -55,7 +58,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-primary transition-colors font-medium"
+                className="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors font-medium"
               >
                 {item.name}
               </Link>
@@ -63,11 +66,17 @@ const Header = () => {
             <Link href="/contact" className="btn-primary">
               {t('nav.book')}
             </Link>
-            <LanguageSwitcher />
+            <div className="flex items-center space-x-3">
+              <CartButton />
+              <ThemeToggle />
+              <LanguageSwitcher />
+            </div>
           </div>
 
-          {/* Mobile menu button and language switcher */}
+          {/* Mobile menu button, theme toggle and language switcher */}
           <div className="md:hidden flex items-center gap-4">
+            <CartButton />
+            <ThemeToggle />
             <LanguageSwitcher />
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -92,7 +101,7 @@ const Header = () => {
           className="fixed inset-0 z-40 bg-white dark:bg-secondary"
         >
           <div className="container-custom pt-20 pb-8">
-            <nav className="flex flex-col space-y-4">
+            <nav className="flex flex-col space-y-4 text-gray-700 dark:text-gray-200">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
