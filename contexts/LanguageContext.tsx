@@ -2,17 +2,14 @@
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-type Language = 'en' | 'sq';
-
 interface LanguageContextType {
-  language: Language;
-  setLanguage: (lang: Language) => void;
+  language: 'en' | 'sq';
+  setLanguage: (lang: 'en' | 'sq') => void;
   t: (key: string) => string;
 }
 
 const translations = {
   en: {
-    // Navigation
     'nav.home': 'Home',
     'nav.about': 'About',
     'nav.makeup': 'Makeup',
@@ -20,74 +17,101 @@ const translations = {
     'nav.products': 'Products',
     'nav.contact': 'Contact',
     'nav.book': 'Book Now',
-    
-    // Hero Section
-    'hero.title': 'Professional Makeup Artist & Beauty Expert',
-    'hero.subtitle': 'Transform your beauty with expert makeup artistry and professional training in Mitrovice',
-    'hero.cta.book': 'Book Consultation',
-    'hero.cta.portfolio': 'View Portfolio',
-    
-    // About Section
+    'hero.title': 'Professional Beauty Services',
+    'hero.subtitle': 'Transform your beauty with our expert treatments',
+    'hero.cta.book': 'Book Appointment',
+    'hero.cta.services': 'View Services',
     'about.title': 'About Arbana',
-    'about.subtitle': 'Professional makeup artist with years of experience in bridal, editorial, and special event makeup',
-    'about.description': 'With a passion for enhancing natural beauty and years of professional experience, I specialize in creating stunning makeup looks for every occasion. From intimate bridal sessions to high-fashion editorial shoots, I bring artistry and precision to every client.',
-    'about.cta': 'Learn More About Me',
-    
-    // Services Section
+    'about.subtitle': 'Your trusted beauty professional',
+    'about.description': 'With years of experience in the beauty industry, I provide personalized treatments to enhance your natural beauty.',
     'services.title': 'Our Services',
-    'services.subtitle': 'Professional makeup services for every occasion',
-    'services.bridal.title': 'Bridal Makeup',
-    'services.bridal.description': 'Your perfect wedding day look with trial sessions and on-location service',
-    'services.editorial.title': 'Editorial & Fashion',
-    'services.editorial.description': 'High-fashion makeup for photoshoots, runway, and editorial work',
-    'services.special.title': 'Special Events',
-    'services.special.description': 'Glamorous makeup for parties, galas, and special occasions',
-    'services.lessons.title': 'Makeup Lessons',
-    'services.lessons.description': 'Learn professional techniques with personalized one-on-one instruction',
-    
-    // Academy Section
-    'academy.title': 'Arbana Beauty Academy',
-    'academy.subtitle': 'Learn from a professional and start your makeup artistry journey',
-    'academy.description': 'Our comprehensive courses cover everything from basic makeup application to advanced professional techniques. Join our academy and turn your passion into a career.',
-    'academy.cta': 'Explore Courses',
-    
-    // Products Section
-    'products.title': 'Arbana Beauty Products',
-    'products.subtitle': 'Discover our premium collection of vegan, cruelty-free, and paraben-free beauty essentials crafted with quality and performance in mind.',
-    'products.cta': 'Shop Now',
-    
-    // Testimonials Section
-    'testimonials.title': 'Client Testimonials',
-    'testimonials.subtitle': 'What our clients say about their experience',
-    
-    // Contact Section
-    'contact.title': 'Get in Touch',
-    'contact.subtitle': 'Ready to transform your look or start your beauty journey? Contact us today.',
-    'contact.location': 'Studio Location',
-    'contact.phone': 'Phone',
-    'contact.email': 'Email',
-    'contact.social': 'Social Media',
-    'contact.hours': 'Working Hours',
-    'contact.cta': 'Book Consultation',
-    
-    // Footer
-    'footer.description': 'Professional makeup artist and beauty expert in Mitrovice, Kosovo. Specializing in bridal, editorial, and special event makeup.',
-    'footer.quickLinks': 'Quick Links',
-    'footer.services': 'Services',
-    'footer.contact': 'Contact Info',
-    'footer.rights': 'All rights reserved.',
+    'services.subtitle': 'Professional beauty treatments for every occasion',
+    'services.popular': 'Popular',
+    'services.book': 'Book Now',
+    'services.details': 'Learn More',
+    'services.viewAll': 'View All Services',
+    'services.duration': 'Duration',
+    'services.price': 'Price',
+    'booking.title': 'Book Appointment',
+    'booking.subtitle': 'Schedule your beauty treatment with us',
+    'booking.service': 'Select Service',
+    'booking.selectService': 'Choose a service',
+    'booking.date': 'Select Date',
+    'booking.time': 'Select Time',
+    'booking.name': 'Full Name',
+    'booking.phone': 'Phone Number',
+    'booking.email': 'Email Address',
+    'booking.notes': 'Additional Notes',
+    'booking.notesPlaceholder': 'Any special requests or concerns?',
+    'booking.submit': 'Send Booking Request',
+    'contact.title': 'Contact Us',
+    'contact.subtitle': 'Get in touch for appointments and inquiries',
+    'footer.rights': 'All rights reserved'
   },
   sq: {
-    // Navigation
-    'nav.home': 'Kreu',
+    'nav.home': 'Ballina',
     'nav.about': 'Rreth Nesh',
     'nav.makeup': 'Makeup',
     'nav.academy': 'Akademia',
     'nav.products': 'Produktet',
     'nav.contact': 'Kontakti',
     'nav.book': 'Rezervo Tani',
-    
-    // Hero Section
+    'hero.title': 'Shërbime Profesionale Bukurie',
+    'hero.subtitle': 'Transformo bukurinë tënde me trajtimet tona eksperte',
+    'hero.cta.book': 'Rezervo Takim',
+    'hero.cta.services': 'Shiko Shërbimet',
+    'about.title': 'Rreth Arbana',
+    'about.subtitle': 'Profesionistja juaj e besuar e bukurisë',
+    'about.description': 'Me vite përvojë në industrinë e bukurisë, ofrojmë trajtime të personalizuara për të theksuar bukurinë tuaj natyrale.',
+    'services.title': 'Shërbimet Tona',
+    'services.subtitle': 'Trajtim profesional bukurie për çdo rast',
+    'services.popular': 'Popullor',
+    'services.book': 'Rezervo Tani',
+    'services.details': 'Mëso Më Shumë',
+    'services.viewAll': 'Shiko Të Gjitha',
+    'services.duration': 'Kohëzgjatja',
+    'services.price': 'Çmimi',
+    'booking.title': 'Rezervo Takim',
+    'booking.subtitle': 'Planifiko trajtimin tënd të bukurisë me ne',
+    'booking.service': 'Zgjidh Shërbimin',
+    'booking.selectService': 'Zgjidh një shërbim',
+    'booking.date': 'Zgjidh Datën',
+    'booking.time': 'Zgjidh Kohën',
+    'booking.name': 'Emri i Plotë',
+    'booking.phone': 'Numri i Telefonit',
+    'booking.email': 'Adresa Email',
+    'booking.notes': 'Shënime Shtesë',
+    'booking.notesPlaceholder': 'Ndonjë kërkesë ose shqetësim i veçantë?',
+    'booking.submit': 'Dërgo Kërkesën',
+    'contact.title': 'Na Kontaktoni',
+    'contact.subtitle': 'Merruni në kontakt për takime dhe pyetje',
+    'footer.rights': 'Të gjitha të drejtat e rezervuara'
+  }
+};
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [language, setLanguage] = useState<'en' | 'sq'>('en');
+
+  const t = (key: string): string => {
+    return translations[language][key as keyof typeof translations['en']] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+}
     'hero.title': 'Artiste Profesionale Makeup & Eksperte Bukurie',
     'hero.subtitle': 'Transformo bukurinë tënde me artizanatin ekspert të makeup-it dhe trajnimin profesional në Mitrovicë',
     'hero.cta.book': 'Rezervo Konsultim',
@@ -142,6 +166,30 @@ const translations = {
     'footer.services': 'Shërbimet',
     'footer.contact': 'Informacionet e Kontaktit',
     'footer.rights': 'Të gjitha të drejtat e rezervuara.',
+    booking: {
+      title: 'Rezervo Takim',
+      subtitle: 'Planifiko trajtimin tënd të bukurisë me ne',
+      service: 'Zgjidh Shërbimin',
+      selectService: 'Zgjidh një shërbim',
+      date: 'Zgjidh Datën',
+      time: 'Zgjidh Kohën',
+      name: 'Emri i Plotë',
+      phone: 'Numri i Telefonit',
+      email: 'Adresa Email',
+      notes: 'Shënime Shtesë',
+      notesPlaceholder: 'Ndonjë kërkesë ose shqetësim i veçantë?',
+      submit: 'Dërgo Kërkesën'
+    },
+    services: {
+      title: 'Shërbimet Tona',
+      subtitle: 'Trajtim profesional bukurie për çdo rast',
+      popular: 'Popullor',
+      book: 'Rezervo Tani',
+      details: 'Mëso Më Shumë',
+      viewAll: 'Shiko Të Gjitha',
+      duration: 'Kohëzgjatja',
+      price: 'Çmimi'
+    }
   }
 };
 
@@ -166,5 +214,7 @@ export const useLanguage = () => {
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
+  return context;
+};
   return context;
 };

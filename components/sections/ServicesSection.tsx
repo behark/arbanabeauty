@@ -1,97 +1,97 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { FiHeart, FiCamera, FiStar, FiUsers } from "react-icons/fi";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { services } from "@/data/services";
+import Image from "next/image";
 import Link from "next/link";
 
-const services = [
-  {
-    icon: FiHeart,
-    title: 'Bridal & Special Events',
-    description: 'Bespoke makeup services for weddings and special occasions with personalized consultations.',
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-    link: "/services/bridal-makeup",
-  },
-  {
-    icon: FiCamera,
-    title: 'Celebrity & Editorial',
-    description: 'High-impact makeup for photoshoots, red carpet events, and magazine features.',
-    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
-    link: "/services/editorial",
-  },
-  {
-    icon: FiStar,
-    title: 'Private Coaching',
-    description: 'One-on-one makeup lessons tailored to your specific needs and skill level.',
-    image: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
-    link: "/services/private-lessons",
-  },
-  {
-    icon: FiUsers,
-    title: 'Makeup & Photography',
-    description: 'Complete packages including professional makeup and photography services.',
-    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1926&q=80",
-    link: "/services/photography",
-  },
-];
-
-const ServicesSection = () => {
-  const { t } = useLanguage();
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
+export default function ServicesSection() {
+  const { t, language } = useLanguage();
 
   return (
-    <section className="py-20 bg-white dark:bg-secondary">
-      <div className="container-custom">
-        <div className="text-center mb-12">
-          <h2 className="heading-lg mb-4">
-            Premium <span className="gradient-text">Makeup Services</span>
+    <section className="py-20 bg-gradient-to-b from-pink-50 to-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            {t("services.title")}
           </h2>
-          <h2 className="heading-lg mb-4">{t('services.title')}</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            {t('services.subtitle')} and personalized attention to detail.
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            {t("services.subtitle")}
           </p>
         </div>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              className="bg-accent dark:bg-gray-800 p-6 rounded-sm hover:shadow-lg transition-shadow group"
-              variants={itemVariants}
-            >
-              <div className="relative h-48 rounded-t-lg overflow-hidden">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services
+            .filter((service) => service.isPopular)
+            .map((service) => (
+              <div
+                key={service.id}
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="relative h-48">
+                  <Image
+                    src={service.images[0]}
+                    alt={language === "sq" ? service.nameAl : service.name}
+                    fill
+                    className="object-cover"
+                  />
+                  {service.isPopular && (
+                    <div className="absolute top-4 right-4 bg-pink-500 text-white px-2 py-1 rounded-full text-sm">
+                      {t("services.popular")}
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">
+                    {language === "sq" ? service.nameAl : service.name}
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    {language === "sq"
+                      ? service.descriptionAl
+                      : service.description}
+                  </p>
+
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-2xl font-bold text-pink-600">
+                      €{service.price}
+                    </span>
+                    <span className="text-sm text-gray-500">
+                      {service.duration} min
+                    </span>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <Link
+                      href={`/book?service=${service.slug}`}
+                      className="flex-1 bg-pink-600 text-white py-2 px-4 rounded-lg text-center hover:bg-pink-700 transition-colors"
+                    >
+                      {t("services.book")}
+                    </Link>
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="px-4 py-2 border border-pink-600 text-pink-600 rounded-lg hover:bg-pink-50 transition-colors"
+                    >
+                      {t("services.details")}
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Link
+            href="/services"
+            className="inline-block bg-pink-600 text-white px-8 py-3 rounded-lg hover:bg-pink-700 transition-colors"
+          >
+            {t("services.viewAll")}
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>

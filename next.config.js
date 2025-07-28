@@ -1,11 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    // Disable ESLint during builds for faster development
-    ignoreDuringBuilds: true,
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true
   },
-  // Enable React Strict Mode
-  reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true
+  }
+}
+
+module.exports = nextConfig
   // Enable external packages for server components
   serverExternalPackages: ['stripe'],
 };
