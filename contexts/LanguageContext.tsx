@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
@@ -17,10 +17,10 @@ const translations = {
     'nav.products': 'Products',
     'nav.contact': 'Contact',
     'nav.book': 'Book Now',
-    'hero.title': 'Professional Beauty Services',
-    'hero.subtitle': 'Transform your beauty with our expert treatments',
-    'hero.cta.book': 'Book Appointment',
-    'hero.cta.services': 'View Services',
+    'hero.title': 'Professional Makeup Artist & Beauty Expert',
+    'hero.subtitle': 'Transform your beauty with expert makeup artistry and professional training in Mitrovica',
+    'hero.cta.book': 'Book Consultation',
+    'hero.cta.portfolio': 'View Portfolio',
     'about.title': 'About Arbana',
     'about.subtitle': 'Your trusted beauty professional',
     'about.description': 'With years of experience in the beauty industry, I provide personalized treatments to enhance your natural beauty.',
@@ -30,8 +30,6 @@ const translations = {
     'services.book': 'Book Now',
     'services.details': 'Learn More',
     'services.viewAll': 'View All Services',
-    'services.duration': 'Duration',
-    'services.price': 'Price',
     'booking.title': 'Book Appointment',
     'booking.subtitle': 'Schedule your beauty treatment with us',
     'booking.service': 'Select Service',
@@ -43,10 +41,7 @@ const translations = {
     'booking.email': 'Email Address',
     'booking.notes': 'Additional Notes',
     'booking.notesPlaceholder': 'Any special requests or concerns?',
-    'booking.submit': 'Send Booking Request',
-    'contact.title': 'Contact Us',
-    'contact.subtitle': 'Get in touch for appointments and inquiries',
-    'footer.rights': 'All rights reserved'
+    'booking.submit': 'Send Booking Request'
   },
   sq: {
     'nav.home': 'Ballina',
@@ -56,10 +51,10 @@ const translations = {
     'nav.products': 'Produktet',
     'nav.contact': 'Kontakti',
     'nav.book': 'Rezervo Tani',
-    'hero.title': 'Shërbime Profesionale Bukurie',
-    'hero.subtitle': 'Transformo bukurinë tënde me trajtimet tona eksperte',
-    'hero.cta.book': 'Rezervo Takim',
-    'hero.cta.services': 'Shiko Shërbimet',
+    'hero.title': 'Artiste Profesionale Makeup & Eksperte Bukurie',
+    'hero.subtitle': 'Transformo bukurinë tënde me artizanatin ekspert të makeup-it dhe trajnimin profesional në Mitrovicë',
+    'hero.cta.book': 'Rezervo Konsultim',
+    'hero.cta.portfolio': 'Shiko Portfolion',
     'about.title': 'Rreth Arbana',
     'about.subtitle': 'Profesionistja juaj e besuar e bukurisë',
     'about.description': 'Me vite përvojë në industrinë e bukurisë, ofrojmë trajtime të personalizuara për të theksuar bukurinë tuaj natyrale.',
@@ -69,8 +64,6 @@ const translations = {
     'services.book': 'Rezervo Tani',
     'services.details': 'Mëso Më Shumë',
     'services.viewAll': 'Shiko Të Gjitha',
-    'services.duration': 'Kohëzgjatja',
-    'services.price': 'Çmimi',
     'booking.title': 'Rezervo Takim',
     'booking.subtitle': 'Planifiko trajtimin tënd të bukurisë me ne',
     'booking.service': 'Zgjidh Shërbimin',
@@ -82,10 +75,7 @@ const translations = {
     'booking.email': 'Adresa Email',
     'booking.notes': 'Shënime Shtesë',
     'booking.notesPlaceholder': 'Ndonjë kërkesë ose shqetësim i veçantë?',
-    'booking.submit': 'Dërgo Kërkesën',
-    'contact.title': 'Na Kontaktoni',
-    'contact.subtitle': 'Merruni në kontakt për takime dhe pyetje',
-    'footer.rights': 'Të gjitha të drejtat e rezervuara'
+    'booking.submit': 'Dërgo Kërkesën'
   }
 };
 
@@ -102,6 +92,16 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+}
   );
 }
 
