@@ -79,10 +79,10 @@ export default function ServicesSection() {
               </div>
             ))}
         </div>
-
-        <div className="text-center mt-12">
-          <Link
-            href="/services"
+      </div>
+    </section>
+  );
+}
             className="inline-block bg-pink-600 text-white px-8 py-3 rounded-lg hover:bg-pink-700 transition-colors"
           >
             {t("services.viewAll")}
