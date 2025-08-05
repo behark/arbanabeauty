@@ -79,10 +79,10 @@ export default function ServicesSection() {
               </div>
             ))}
         </div>
-      </div>
-    </section>
-  );
-}
+        
+        <div className="mt-12 text-center">
+          <Link
+            href="/services"
             className="inline-block bg-pink-600 text-white px-8 py-3 rounded-lg hover:bg-pink-700 transition-colors"
           >
             {t("services.viewAll")}
@@ -92,50 +92,3 @@ export default function ServicesSection() {
     </section>
   );
 }
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              </div>
-              <div className="p-3 bg-primary bg-opacity-10 rounded-full w-fit mb-4 text-primary">
-                <service.icon size={24} />
-              </div>
-              <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-5">{service.description}</p>
-              <Link
-                href={service.link}
-                className="text-primary font-medium group-hover:underline flex items-center"
-              >
-                Discover More
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Link>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <div className="mt-12 text-center">
-          <Link
-            href="/services"
-            className="px-8 py-3 border-2 border-primary text-primary font-medium rounded-sm hover:bg-primary hover:text-white transition-colors inline-block"
-          >
-            View All Services
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default ServicesSection;

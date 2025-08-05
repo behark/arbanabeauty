@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish = "out"
+  publish = ".next"
 
 [[redirects]]
   from = "/*"
@@ -12,7 +12,6 @@
   # Note: Add your actual Stripe API keys in the Netlify Dashboard Environment Variables section
   # Do not put actual API keys in this file as they would be exposed in version control
 
-# For static export, we don't need the Next.js Netlify plugin
-# [[plugins]]
-#   package = "@netlify/plugin-nextjs"
-  status = 200
+# Use the Next.js Netlify plugin for SSR support
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
